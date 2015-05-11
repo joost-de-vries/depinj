@@ -1,6 +1,6 @@
-package ex1
+package ex3
 
-import ex1.PwdMgmt._
+import ex3.PwdMgmt._
 import shared.ConnProvider
 
 import scala.io.StdIn.readLine
@@ -8,14 +8,13 @@ import scala.io.StdIn.readLine
 object Main extends App {
 
 
-
   def myProgram(userid: String): ConnProvider => Unit =
     connProvider => {
       println("Enter old password")
-      val oldPwd = readLine()
+      val oldPwd = readLine
       println("Enter new password")
-      val newPwd = readLine()
-      connProvider.run(changePwd(userid, oldPwd, newPwd).thisAction) //evaluate composed dbaction
+      val newPwd = readLine
+      connProvider.run(changePwd(userid, oldPwd, newPwd)) //evaluate composed dbaction
     }
 
   def runInTest[A](dbProgram: ConnProvider => A): A = dbProgram(ConnProvider.SqliteTestDB)
